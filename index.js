@@ -1,8 +1,12 @@
 var native = require('./build/Release/parser');
+var dateProperties = ['date', 'updated'];
 
 function parseDate(article) {
-    if (typeof article.date !== 'undefined') {
-        article.date = new Date(Date.parse(article.date));
+    for (var i = 0 ; i < dateProperties.length ; i++) {
+        var prop = dateProperties[i];
+        if (typeof article[prop] !== 'undefined') {
+            article[prop] = new Date(Date.parse(article[prop]));
+        }
     }
 }
 
